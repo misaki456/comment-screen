@@ -16,6 +16,10 @@ const ALLOWED_STAMPS = ['👍', '❤️', '😂', '😮', '👏'];
 const comments = [];
 let nextId = 1;
 
+app.get('/', (req, res) => {
+  res.redirect('/post.html');
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
