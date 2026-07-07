@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>コメント投稿</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="chat-body">
+  <header class="chat-header">
+    <h1>みんなのコメント</h1>
+  </header>
+
+  <main id="comment-history" class="chat-history"></main>
+
+  <footer class="chat-input-area">
+    <div class="stamp-row">
+      <button type="button" class="stamp-btn" data-emoji="👍">👍</button>
+      <button type="button" class="stamp-btn" data-emoji="❤️">❤️</button>
+      <button type="button" class="stamp-btn" data-emoji="😂">😂</button>
+      <button type="button" class="stamp-btn" data-emoji="😮">😮</button>
+      <button type="button" class="stamp-btn" data-emoji="👏">👏</button>
+    </div>
+
+    <form id="comment-form" class="chat-form">
+      <input type="text" id="name" maxlength="20" placeholder="名前(任意)" class="chat-name-input">
+      <textarea id="text" maxlength="100" rows="1" placeholder="コメントを入力" required class="chat-text-input"></textarea>
+      <button type="submit" id="submit-btn" class="chat-send-btn">送信</button>
+    </form>
+    <div class="char-count"><span id="char-count">0</span> / 100</div>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="post.js"></script>
+</body>
+</html>

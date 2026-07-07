@@ -1,0 +1,260 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Yu Gothic UI", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+}
+
+/* ---- 投稿ページ(チャット風レイアウト) ---- */
+.chat-body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f4f2fb;
+}
+
+.chat-header {
+  flex: none;
+  padding: 16px 20px;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  color: #fff;
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-comment {
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  width: 480px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chat-comment-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #7873f5;
+}
+
+.chat-comment-text {
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.like-btn {
+  align-self: flex-end;
+  border: none;
+  background: #f4f2fb;
+  color: #ff6ec4;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.like-btn:hover:not(:disabled) {
+  transform: scale(1.08);
+}
+
+.like-btn.liked {
+  background: #ffe1ee;
+  cursor: default;
+}
+
+.like-btn:disabled {
+  opacity: 0.85;
+}
+
+.chat-input-area {
+  flex: none;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 10px 16px 14px;
+}
+
+.stamp-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stamp-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #eee;
+  background: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.stamp-btn:hover:not(:disabled) {
+  transform: scale(1.15);
+  border-color: #ff9ec4;
+}
+
+.stamp-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.chat-name-input {
+  width: 96px;
+  flex: none;
+  padding: 10px 12px;
+  border: 2px solid #eee;
+  border-radius: 14px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.chat-text-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid #eee;
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: none;
+}
+
+.chat-name-input:focus,
+.chat-text-input:focus {
+  outline: none;
+  border-color: #ff9ec4;
+}
+
+.chat-send-btn {
+  flex: none;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(120, 115, 245, 0.4);
+  transition: transform 0.15s;
+}
+
+.chat-send-btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.chat-send-btn:disabled {
+  background: #ddd;
+  box-shadow: none;
+  cursor: default;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+/* ---- 表示(弾幕)ページ ---- */
+.display-body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent; /* OBSのブラウザソースで透過表示するため */
+}
+
+#danmaku-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.danmaku-comment {
+  position: absolute;
+  left: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  font-family: "Yu Gothic UI", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  animation-name: danmaku-flow;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.danmaku-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.danmaku-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.danmaku-stamp {
+  position: absolute;
+  left: 100%;
+  font-size: 56px;
+  line-height: 1;
+  animation-name: danmaku-flow;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes danmaku-flow {
+  0% {
+    transform: translateX(0) scale(0.6);
+    opacity: 0;
+  }
+  8% {
+    transform: translateX(-8vw) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-200vw) scale(1);
+    opacity: 1;
+  }
+}
